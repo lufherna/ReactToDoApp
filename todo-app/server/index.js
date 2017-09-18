@@ -2,6 +2,11 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const volleyball = require('volleyball');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import HOME from './components/Home';
+import {Provider} from 'react-redux';
+import store from './redux/store';
 
 app.use(volleyball);
 
@@ -25,3 +30,10 @@ app.get('*', function (request, response) {
 app.listen(process.env.PORT || 3000, function() {
 	console.log('Listening on port 3000')
 });
+
+ReactDOM.render(
+	<Provider store = {store}>
+		<Home />
+	</Provider>,
+	  document.getElementById('root')
+	);
