@@ -1,5 +1,11 @@
 let path = require('path');
 let LiveReloadPlugin = require('webpack-livereload-plugin');
+
+// this file bundles all our react files and exports that bundle
+// file to our dist directory. 
+// here we are telling webpack to output a bundle.js file into our
+// dist folder with all our react componentes bundled in there too!
+
 module.exports = {
   entry: './client/index.js',
   output: {

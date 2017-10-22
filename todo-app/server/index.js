@@ -2,38 +2,37 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const volleyball = require('volleyball');
-import React from 'react';
-import ReactDOM from 'react-dom';
-import HOME from './components/Home';
-import {Provider} from 'react-redux';
-import store from './redux/store';
-
+const bodyParser = require('body-parser');
+const PORT = process.env.PORT || 3000
 app.use(volleyball);
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
-// serve up static files
+//serve up static files
 app.use(express.static(path.resolve(__dirname, '..', 'client')));
 app.use(express.static(path.resolve(__dirname, '..', 'node_modules')));
+// app.use(express.static(path.resolve(__dirname, '..', 'client', 'styles', 'mainSheet', 'main.css')));
+
+// app.get('/client/styles/mainSheet', function (request, response){
+//   console.log("I HIT DA STYLES");
+//   response.sendFile(path.resolve(__dirname, '..', 'styles', 'mainSheet', 'main.css'))
+// });
+// app.use(express.static(path.resolve(__dirname, 'client', 'styles', 'mainSheet', 'main.css')));
+
 
 app.use(function (err, req, res, next) {
-	console.error(err);
-	console.error(err.stack);
-	res.status(err.status || 500).send(err.message || 'Internal server error');
+  console.error(err);
+  console.error(err.stack);
+  res.status(err.status || 500).send(err.message || 'Internal server error.');
 });
+
 
 // handle every other route with index.html, which will contain
-// a script tag to our app's js file(s)
+// a script tag to our application's JavaScript file(s).
 app.get('*', function (request, response) {
-	response.sendFile(path.resolve(__dirname, '..', 'client', 'index.html'))
-})
-
-// listen on port 3000
-app.listen(process.env.PORT || 3000, function() {
-	console.log('Listening on port 3000')
+  response.sendFile(path.resolve(__dirname, '..', 'client', 'index.html'))
 });
 
-ReactDOM.render(
-	<Provider store = {store}>
-		<Home />
-	</Provider>,
-	  document.getElementById('root')
-	);
+app.listen(PORT, function () {
+  console.log("Rockin out on port " + PORT + " homie");
+});

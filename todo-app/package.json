@@ -1,5 +1,5 @@
 {
-  "name": "ToDo",
+  "name": "cosmicToDo",
   "version": "1.0.0",
   "description": "A simple todo app thet uses the Cosmic JS API",
   "main": "index.js",

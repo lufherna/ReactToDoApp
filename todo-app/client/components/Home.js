@@ -15,6 +15,7 @@ class Home extends Component {
   // we are rendering html to our virtual dom
   // we are creating a form that will dispatch a function
   // that will go through our redux-thunk middleware
+  // we are creating a form that will dispatch a function
   render() {
     return (
       <div>
@@ -40,7 +41,7 @@ class Home extends Component {
       <div className="container">
         <div className="row">
           <div className="col-xs-12">
-            <h3>Let's get some work done!</h3>
+            <h3>Lets get some work done!</h3>
           </div>
         </div>
       </div>
@@ -57,6 +58,7 @@ class Home extends Component {
     )
   }
 }
+
 const mapState = ({tasks}) => ({tasks});
 const mapDispatch = {getAllTasks, postNewTask};
 export default connect(mapState, mapDispatch)(Home);
